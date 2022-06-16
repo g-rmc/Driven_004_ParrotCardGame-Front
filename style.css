@@ -43,6 +43,7 @@ body{
     background-color: #A7E9AF;
     border: solid 1px #99CEA8;
     margin: 15px;
+    transition: all 1s linear;
 }
 
 .face-estatica, .face-gif {
@@ -54,4 +55,27 @@ body{
 
 .face-estatica img, .face-gif img {
     width: 100px;
+    transition-delay: 500ms;
+}
+
+.face-estatica img {
+    opacity: 1;
+}
+
+.face-gif img {
+    opacity: 0;
+}
+
+/* ANIMAÇÕES */
+
+.carta:hover {
+    transform: rotateY(180deg);
+}
+
+.face-estatica img:hover {
+    opacity: 0;
+}
+
+.face-gif img:hover {
+    opacity: 1;
 }
