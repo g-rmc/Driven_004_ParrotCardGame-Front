@@ -37,7 +37,7 @@ body{
 }
 
 .carta {
-    height: 146px;
+    /* height: 146px; */
     width: 117px;
     border-radius: 5px;
     background-color: #A7E9AF;
@@ -45,13 +45,13 @@ body{
     margin: 15px;
 }
 
-.face-estatica {
+.face-estatica, .face-gif {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 23px 0;
 }
 
-.face-estatica img {
+.face-estatica img, .face-gif img {
     width: 100px;
 }

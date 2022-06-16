@@ -1,8 +1,14 @@
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
 // INCLUSÃO DAS CARTAS NO JOGO
 
 let NumCartas ;
 
 function inicio () {
+
+    // Entrada do número de cartas
 
     NumCartas = prompt("Insira aqui o número de cartas");
 
@@ -16,7 +22,11 @@ function inicio () {
             }
         }
 
-    console.log(NumCartas);
+    // Trazer lista aleatória de gifs de papagaios
+
+    let listaGif = DistPapagaios(NumCartas/2);
+
+    // Inserção das cartas no DOM
 
     const jogo = document.querySelector(".jogo");
 
@@ -26,11 +36,14 @@ function inicio () {
         <div class="carta" data-identifier="card">
 
             <div class="face-estatica" data-identifier="back-face">
-              <img src="imagens/front.png" alt="">
-              ${i+1}
+                <img src="imagens/front.png" alt="">
+                ${i+1}
             </div>
 
-            <div class="face-gif" data-identifier="front-face"></div>
+            <div class="face-gif" data-identifier="front-face">
+                <img src="${listaGif[i]}" alt="">
+                ${i+1}
+            </div>
 
         </div>
         `
@@ -41,13 +54,24 @@ inicio ();
 
 // DISTRIBUIÇÃO DE PAPAGAIOS
 
-const listaGif = [
-    "imagens/bobrossparrot.gif",
-    "imagens/explodyparrot.gif",
-    "imagens/fiestaparrot.gif",
-    "imagens/metalparrot.gif",
-    "imagens/revertitparrot.gif",
-    "imagens/tripletsparrot.gif",
-    "imagens/unicornparrot.gif",
-]
+function DistPapagaios (NumGifs) {
 
+    let listaGif = [
+        "imagens/bobrossparrot.gif",
+        "imagens/explodyparrot.gif",
+        "imagens/fiestaparrot.gif",
+        "imagens/metalparrot.gif",
+        "imagens/revertitparrot.gif",
+        "imagens/tripletsparrot.gif",
+        "imagens/unicornparrot.gif",
+    ]
+    
+    listaGif = listaGif.sort(comparador);
+
+    let output = [];
+    for (let i = 0; i < NumGifs; i++){
+        output.push(listaGif[i]);
+    }
+
+    return (output);
+}
