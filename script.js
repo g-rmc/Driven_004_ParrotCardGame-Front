@@ -108,8 +108,8 @@ function CartaSelecionada (carta) {
             } else {
 
                 PrimeiraCarta.classList.remove("em-jogo");
-                setTimeout(VirarCarta (PrimeiraCarta), 50000);
-                setTimeout(VirarCarta (SegundaCarta), 50000);
+                setTimeout(VirarCarta, 1500, PrimeiraCarta);
+                setTimeout(VirarCarta, 1500, SegundaCarta);
 
             }
         }
