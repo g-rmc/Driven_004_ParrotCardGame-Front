@@ -37,24 +37,26 @@ body{
 }
 
 .carta {
-    /* height: 146px; */
-    width: 117px;
+    height: 150px;
+    width: 120px;
     border-radius: 5px;
     background-color: #A7E9AF;
     border: solid 1px #99CEA8;
     margin: 15px;
-    transition: all 1s linear;
+    transition: transform 1s linear;
+    position: relative;
 }
 
 .face-estatica, .face-gif {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 23px 0;
+    position: absolute;
+    top: 15px;
+    left: 15px;
 }
 
 .face-estatica img, .face-gif img {
-    width: 100px;
+    width: 90px;
+    height: 120px;
+    object-fit: contain;
     transition-delay: 500ms;
 }
 
@@ -68,14 +70,14 @@ body{
 
 /* ANIMAÇÕES */
 
-.carta:hover {
+.carta.virada {
     transform: rotateY(180deg);
 }
 
-.face-estatica img:hover {
+.face-estatica.virada img {
     opacity: 0;
 }
 
-.face-gif img:hover {
+.face-gif.virada img {
     opacity: 1;
 }

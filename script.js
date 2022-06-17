@@ -33,16 +33,14 @@ function inicio () {
     for (let i = 0; i < NumCartas/2; i++) {
         
         jogo.innerHTML += `
-        <div class="carta" data-identifier="card">
+        <div class="carta" data-identifier="card" onclick="CartaSelecionada(this)">
 
             <div class="face-estatica" data-identifier="back-face">
-                <img src="imagens/front.png" alt="">
-                ${i+1}
+              <img src="imagens/front.png" alt="">
             </div>
 
             <div class="face-gif" data-identifier="front-face">
                 <img src="${listaGif[i]}" alt="">
-                ${i+1}
             </div>
 
         </div>
@@ -74,4 +72,22 @@ function DistPapagaios (NumGifs) {
     }
 
     return (output);
+}
+
+// CLICANDO NA CARTA
+
+function CartaSelecionada (elemento) {
+
+    elemento.classList.toggle("virada");
+    
+    let f1 = elemento.querySelector(".face-estatica");
+    let f2 = elemento.querySelector(".face-gif");
+
+    f1.classList.toggle("virada");
+    f2.classList.toggle("virada");
+
+    console.log(elemento.classList);
+    console.log(f1);
+
+
 }
