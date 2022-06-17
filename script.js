@@ -26,13 +26,16 @@ function inicio () {
 
     let listaGif = DistPapagaios(NumCartas/2);
 
-    // Inserção das cartas no DOM
+    // Criação das cartas individuais (meio deck)
 
     const jogo = document.querySelector(".jogo");
 
+    let meioDeck = [];
+
     for (let i = 0; i < NumCartas/2; i++) {
         
-        jogo.innerHTML += `
+        
+        meioDeck.push(`
         <div class="carta" data-identifier="card" onclick="CartaSelecionada(this)">
 
             <div class="face-estatica" data-identifier="back-face">
@@ -44,11 +47,40 @@ function inicio () {
             </div>
 
         </div>
-        `
+        `)
     }
+
+    // Criação das duplas (deck)
+
+    let deck = meioDeck.concat(meioDeck);
+
+    // Embaralhando o deck
+
+    deck = deck.sort(comparador);
+
+    // Inserção das cartas no DOM
+
+    for (let i = 0; i < NumCartas; i++){
+        jogo.innerHTML += deck[i];
+    }
+    
 }
 
 inicio ();
+
+// CLICANDO NA CARTA
+
+function CartaSelecionada (elemento) {
+
+    elemento.classList.toggle("virada");
+    
+    let f1 = elemento.querySelector(".face-estatica");
+    let f2 = elemento.querySelector(".face-gif");
+
+    f1.classList.toggle("virada");
+    f2.classList.toggle("virada");
+
+}
 
 // DISTRIBUIÇÃO DE PAPAGAIOS
 
@@ -72,22 +104,4 @@ function DistPapagaios (NumGifs) {
     }
 
     return (output);
-}
-
-// CLICANDO NA CARTA
-
-function CartaSelecionada (elemento) {
-
-    elemento.classList.toggle("virada");
-    
-    let f1 = elemento.querySelector(".face-estatica");
-    let f2 = elemento.querySelector(".face-gif");
-
-    f1.classList.toggle("virada");
-    f2.classList.toggle("virada");
-
-    console.log(elemento.classList);
-    console.log(f1);
-
-
 }
