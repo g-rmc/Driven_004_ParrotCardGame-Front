@@ -4,7 +4,9 @@ function comparador() {
 
 // INCLUSÃO DAS CARTAS NO JOGO
 
+const jogo = document.querySelector(".jogo");
 let NumCartas ;
+let cliques = 0;
 
 function inicio () {
 
@@ -27,8 +29,6 @@ function inicio () {
     let listaGif = DistPapagaios(NumCartas/2);
 
     // Criação das cartas individuais (meio deck)
-
-    const jogo = document.querySelector(".jogo");
 
     let meioDeck = [];
 
@@ -63,14 +63,64 @@ function inicio () {
     for (let i = 0; i < NumCartas; i++){
         jogo.innerHTML += deck[i];
     }
-    
 }
 
 inicio ();
 
 // CLICANDO NA CARTA
 
-function CartaSelecionada (elemento) {
+function CartaSelecionada (carta) {
+
+    cliques += 1;
+
+    // A carta esta virada?
+
+    if (carta.classList.contains("virada")){
+
+        // Nada acontece
+
+    } else {
+        VirarCarta(carta);
+    
+        // A carta é a primeira ou a segunda da jogada?
+
+        cartasViradas = document.querySelectorAll(".carta.virada").length;
+
+        if (cartasViradas % 2 !== 0) {
+
+            // É a primeira carta da jogada
+
+            console.log("Primeira Carta");
+            carta.classList.add("em-jogo");
+
+        } else {
+
+            // É a segunda carta da jogada
+
+            console.log("Segunda Carta");
+            let PrimeiraCarta = document.querySelector(".carta.virada.em-jogo");
+            let SegundaCarta = carta;
+
+            if(EhIgual(PrimeiraCarta,SegundaCarta)){
+
+                PrimeiraCarta.classList.remove("em-jogo");
+
+            } else {
+
+                PrimeiraCarta.classList.remove("em-jogo");
+                setTimeout(VirarCarta (PrimeiraCarta), 50000);
+                setTimeout(VirarCarta (SegundaCarta), 50000);
+
+            }
+        }
+    }
+
+
+}
+
+// CARTA VIRANDO
+
+function VirarCarta (elemento) {
 
     elemento.classList.toggle("virada");
     
@@ -79,6 +129,21 @@ function CartaSelecionada (elemento) {
 
     f1.classList.toggle("virada");
     f2.classList.toggle("virada");
+
+}
+
+// VERIFICANDO CARTAS IGUAIS
+
+function EhIgual(PrimeiraCarta,SegundaCarta) {
+
+    let cont1 = PrimeiraCarta.innerHTML;
+    let cont2 = SegundaCarta.innerHTML;
+
+    if (cont1 === cont2){
+        return true;
+    } else {
+        return false;
+    }
 
 }
 
