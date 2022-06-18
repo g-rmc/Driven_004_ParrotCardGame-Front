@@ -12,25 +12,22 @@ let stopTimer = 0;
 
 function inicio () {
 
-    // Entrada do número de cartas
+    // >>> Entrada do número de cartas
+
+    alert ("Bem vinde ao jogo da memória\n\nParrot Card Game\n\nPor g-rmc :D")
 
     NumCartas = prompt("Insira aqui o número de cartas");
 
-        while (NumCartas % 2 !== 0) {
-            alert ("Somente números pares!!");
+        while (EhValido(NumCartas) === false) {
+            alert ("Somente números pares entre 4 e 14!!");
             NumCartas = prompt("Insira aqui o número de cartas");
-
-            while (NumCartas < 4 || NumCartas > 14){
-                alert ("Somente números entre 4 e 14!!");
-                NumCartas = prompt("Insira aqui o número de cartas");  
-            }
         }
 
-    // Trazer lista aleatória de gifs de papagaios
+    // >>> Trazer lista aleatória de gifs de papagaios
 
     let listaGif = DistPapagaios(NumCartas/2);
 
-    // Criação das cartas individuais (meio deck)
+    // >>> Criação das cartas individuais (meio deck)
 
     let meioDeck = [];
 
@@ -52,21 +49,21 @@ function inicio () {
         `)
     }
 
-    // Criação das duplas (deck)
+    // >>> Criação das duplas (deck)
 
     let deck = meioDeck.concat(meioDeck);
 
-    // Embaralhando o deck
+    // >>> Embaralhando o deck
 
     deck = deck.sort(comparador);
 
-    // Inserção das cartas no DOM
+    // >>> Inserção das cartas no DOM
 
     for (let i = 0; i < NumCartas; i++){
         jogo.innerHTML += deck[i];
     }
 
-    // Ativar o cronometro
+    // >>> Ativar o cronometro
 
     timer ();
 
@@ -231,4 +228,19 @@ function DistPapagaios (NumGifs) {
     }
 
     return (output);
+}
+
+// VALIDAR NÚMERO DE CARTAS
+
+function EhValido(num) {
+
+    if (num >= 4 && num <= 14){
+        if (num % 2 === 0) {
+            return true
+        } else {
+            return false
+        }
+    } else {
+        return false
+    }
 }
