@@ -80,7 +80,7 @@ function CartaSelecionada (carta) {
         // Nada acontece
 
     } else {
-        VirarCarta(carta);
+        VirarCarta (carta);
     
         // A carta é a primeira ou a segunda da jogada?
 
@@ -90,14 +90,12 @@ function CartaSelecionada (carta) {
 
             // É a primeira carta da jogada
 
-            console.log("Primeira Carta");
             carta.classList.add("em-jogo");
 
         } else {
 
             // É a segunda carta da jogada
 
-            console.log("Segunda Carta");
             let PrimeiraCarta = document.querySelector(".carta.virada.em-jogo");
             let SegundaCarta = carta;
 
@@ -113,6 +111,12 @@ function CartaSelecionada (carta) {
 
             }
         }
+    }
+
+    if (acabou()) {
+
+        setTimeout(alert, 1000, `Você ganhou em ${cliques} jogadas!`);  
+        
     }
 
 
@@ -134,7 +138,7 @@ function VirarCarta (elemento) {
 
 // VERIFICANDO CARTAS IGUAIS
 
-function EhIgual(PrimeiraCarta,SegundaCarta) {
+function EhIgual (PrimeiraCarta,SegundaCarta) {
 
     let cont1 = PrimeiraCarta.innerHTML;
     let cont2 = SegundaCarta.innerHTML;
@@ -143,6 +147,20 @@ function EhIgual(PrimeiraCarta,SegundaCarta) {
         return true;
     } else {
         return false;
+    }
+
+}
+
+// FIM DE JOGO
+
+function acabou () {
+
+    let cartasViradas = document.querySelectorAll(".carta.virada").length;
+
+    if (cartasViradas < NumCartas) {
+        return false
+    } else {
+        return true
     }
 
 }
