@@ -115,11 +115,10 @@ function CartaSelecionada (carta) {
 
     if (acabou()) {
 
-        setTimeout(alert, 1000, `Você ganhou em ${cliques} jogadas!`);  
+        setTimeout(alert, 1000, `Você ganhou em ${cliques} jogadas!`);
+        setTimeout(jogarNovamente, 1000);    
         
     }
-
-
 }
 
 // CARTA VIRANDO
@@ -161,6 +160,25 @@ function acabou () {
         return false
     } else {
         return true
+    }
+
+}
+
+// BÔNUS: JOGAR NOVAMENTE?
+
+function jogarNovamente () {
+
+    novoJogo = prompt ("Deseja jogar novamente? (sim ou não)");
+
+    while (novoJogo !== "sim" && novoJogo !== "não"){
+        novoJogo = prompt ("Deseja jogar novamente? (sim ou não)");
+    }
+
+    if (novoJogo === "sim"){
+        jogo.innerHTML = ""
+        inicio();
+    } else {
+        alert("Obrigado por jogar :D")
     }
 
 }
