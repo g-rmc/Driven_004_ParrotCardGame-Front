@@ -7,6 +7,8 @@ function comparador() {
 const jogo = document.querySelector(".jogo");
 let NumCartas ;
 let cliques = 0;
+let tempo = 0;
+let stopTimer = 0;
 
 function inicio () {
 
@@ -63,6 +65,11 @@ function inicio () {
     for (let i = 0; i < NumCartas; i++){
         jogo.innerHTML += deck[i];
     }
+
+    // Ativar o cronometro
+
+    timer ();
+
 }
 
 inicio ();
@@ -115,7 +122,8 @@ function CartaSelecionada (carta) {
 
     if (acabou()) {
 
-        setTimeout(alert, 1000, `Você ganhou em ${cliques} jogadas!`);
+        clearInterval(stopTimer);
+        setTimeout(alert, 1000, `Você ganhou em ${cliques} jogadas!\nTempo total: ${tempo} segundos`);
         setTimeout(jogarNovamente, 1000);    
         
     }
@@ -175,12 +183,30 @@ function jogarNovamente () {
     }
 
     if (novoJogo === "sim"){
-        jogo.innerHTML = ""
+        jogo.innerHTML = "";
+        tempo = 0;
+        cliques = 0
         inicio();
     } else {
         alert("Obrigado por jogar :D")
     }
 
+}
+
+// BÔNUS: CRONÔMETRO
+
+function timer () {
+
+    mostrador = document.querySelector(".cronometro");
+
+    mostrador.innerHTML = `<h2>${tempo}</br>segundos</h2>`;
+
+    stopTimer = setInterval(somarSegundos, 1000);
+}
+
+function somarSegundos() {
+    tempo++;
+    mostrador.innerHTML = `<h2>${tempo}</br>segundos</h2>`;
 }
 
 // DISTRIBUIÇÃO DE PAPAGAIOS
